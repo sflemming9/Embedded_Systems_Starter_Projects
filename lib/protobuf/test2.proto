@@ -1,0 +1,9 @@
+message NestedMessage {
+  message Variable {
+    optional uint32 val = 1;
+    optional uint32 devid = 2;
+    optional uint32 varid = 3;
+  }
+  repeated Variable variable = 1;
+  optional uint32 timestamp = 2;
+}

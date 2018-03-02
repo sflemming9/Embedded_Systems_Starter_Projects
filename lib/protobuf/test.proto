@@ -1,0 +1,28 @@
+message TestMessage {
+  required int32 a = 1;
+  optional int32 b = 2;
+  optional int32 c = 3;
+  optional int32 d = 4;
+  optional int32 e = 5;
+  optional int32 f = 6;
+  optional int32 g = 7;
+  optional int32 h = 8;
+  optional int32 i = 9;
+  optional int32 j = 10;
+  optional int32 k = 11;
+  optional int32 l = 12;
+  optional int32 m = 13;
+  optional int32 n = 14;
+  optional int32 o = 15;
+  optional int32 p = 16;
+  optional int32 q = 17;
+  optional int32 r = 18;
+  optional int32 s = 19;
+  optional int32 t = 20;
+  optional int32 u = 21;
+  optional int32 v = 22;
+  optional int32 w = 23;
+  optional int32 x = 24;
+  optional int32 y = 25;
+  optional int32 z = 26;
+}

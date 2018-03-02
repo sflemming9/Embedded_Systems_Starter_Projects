@@ -1,0 +1,38 @@
+This is a README for using the protobufs within our system.
+Please update this if you change something relevant.
+
+We use the NanoPB implementation for C that follows Google's original implementation.
+Github Repo:  https://github.com/nanopb/nanopb
+Website:      https://koti.kapsi.fi/jpa/nanopb
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The first thing you need to do to set up an internal data struct for the board
+you are working on is call "lib_protobuf_InitDataStruct()" at startup. This
+will initialize an instance of the DataMessage protobuf struct, that is then 
+externed and available to any file that includes lib_protobuf_data_struct.h.
+
+This data structure is called "lib_data_struct" and the fields of the message 
+(aka. our car's variables) can be accessed and set by name:
+eg. lib_data_struct.cruise_speed = 85;
+Or, more generically: lib_data_struct.field_name = value;
+
+IMPORTANT:
+After setting a new value in a field, you must also update that field's "has" bit
+to show that there is a value present (eg.):
+
+lib_data_struct.cruise_speed = 85;
+lib_data_struct.has_cruise_speed = true;
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you want to copy one protobuf message's field values into another protobuf
+message, use the copy function(s) defined in lib_protobuf_utils.h.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you want to serialize/deserialize protobufs to/from a message buffer, use
+the functions defined in lib_pb.h.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
