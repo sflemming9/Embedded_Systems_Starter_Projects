@@ -21,12 +21,12 @@
 
 Pin LED[] = {
     {   // Define LED
-        .port = GPIOD,
+        .port = GPIOD,                          // the 'D' corresponds to location of the pin - pin used is PD12
         .rccfunc = &(RCC_AHB1PeriphClockCmd),
-        .pin = GPIO_Pin_12,
-        .pinsource = GPIO_PinSource12,
-        .clock = RCC_AHB1Periph_GPIOD,
-        .af = NULL
+        .pin = GPIO_Pin_12,                     // User LD4: green LED is a user LED connected to the I/O PD12 of the STM32F407VGT6
+        .pinsource = GPIO_PinSource12,          // pin source 12
+        .clock = RCC_AHB1Periph_GPIOD,          // GPIOD
+        .af = NULL                              // alternate function: because we are only using an LED (not spi or other communication protocol, this can be NULL)
     }
 };
 
@@ -35,16 +35,18 @@ void LedTest(void* pvParameters)
 {
 
   /* Configure the LEDs */
+  // always need to configure the pin
   Pin_ConfigGpioPin(LED, GPIO_Mode_OUT, GPIO_Speed_2MHz,
             GPIO_OType_PP, GPIO_PuPd_NOPULL, false);
   
   while(true)  {
-    Pin_SetHigh(LED);
-    /* Wait one second */
-    vTaskDelay(1000);
     
-    Pin_SetLow(LED);
-    vTaskDelay(1000);
+    Pin_SetHigh(LED);           // set the pin to HIGH (turns it on)
+    /* Wait one second */
+    vTaskDelay(1000);           // measured in milli seconds
+    
+    Pin_SetLow(LED);            // set the pin to LOW (turns it off)
+    vTaskDelay(1000);           // wait 1s until loop continues
   
   }
 }
